@@ -114,13 +114,13 @@ public class AssessmentItemTest {
     public void getItemResponsesFromAssessmentListTest(){
         try{
             TecmapDatastore tecmapDatastore = TecmapFileDatastore.buildFromJsonFile(Settings.DEFAULT_TEST_DATASTORE_PATH);
-            TecmapAPI analysisExample = tecmapDatastore.retrieveTecmapForId("DocExample");
+            TecmapAPI analysisExample = tecmapDatastore.retrieveTecmapForId("Cs1Example");
             ConceptGraph acg = analysisExample.getAverageConceptGraph();
             Map<String, AssessmentItem> assessmentItemMap = acg.getAssessmentItemMap();
             List<AssessmentItem> assessmentItems = new ArrayList<>(assessmentItemMap.values());
 
             List<AssessmentItemResponse> responses = AssessmentItem.getItemResponsesFromAssessmentList(assessmentItems);
-            assertEquals(9000, responses.size());
+            assertEquals(30, responses.size());
 
 
         }catch (Exception e){
