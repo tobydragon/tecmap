@@ -29,7 +29,8 @@ public class PracticalConceptGraphTest {
         try{
             List<String[]> rows = CsvFileLibrary.parseRowsFromFile(TEST_DIR+"basicRealisticAssessment.csv");
             List<CsvProcessor> processors = new ArrayList<>();
-            TecmapCSVReader tecmapCsvReader = new SakaiReader(rows, processors);
+            processors.add(new CanvasConverter());
+            TecmapCSVReader tecmapCsvReader = new CanvasReader(rows, processors);
 
 
             ConceptGraphRecord graphRecord = ConceptGraphRecord.buildFromJson(TEST_DIR+"mediumRealisticConceptGraph.json");
@@ -109,7 +110,8 @@ public class PracticalConceptGraphTest {
         try{
             List<String[]> rows = CsvFileLibrary.parseRowsFromFile(TEST_DIR+"advancedRealisticAssessment.csv");
             List<CsvProcessor> processors = new ArrayList<>();
-            TecmapCSVReader tecmapCsvReader = new SakaiReader(rows, processors);
+            processors.add(new CanvasConverter());
+            TecmapCSVReader tecmapCsvReader = new CanvasReader(rows, processors);
 
             ConceptGraphRecord graphRecord = ConceptGraphRecord.buildFromJson(TEST_DIR+"mediumRealisticConceptGraph.json");
 
@@ -147,8 +149,8 @@ public class PracticalConceptGraphTest {
         try{
             List<String[]> rows = CsvFileLibrary.parseRowsFromFile(TEST_DIR+"singleStudentRealisticAssessment.csv");
             List<CsvProcessor> processors = new ArrayList<>();
-            processors.add(new CreateMaxScoreRow());
-            TecmapCSVReader tecmapCsvReader = new SakaiReader(rows, processors);
+            processors.add(new CanvasConverter());
+            TecmapCSVReader tecmapCsvReader = new CanvasReader(rows, processors);
 
             ConceptGraphRecord graphRecord = ConceptGraphRecord.buildFromJson(TEST_DIR+"mediumRealisticConceptGraph.json");
             List<LearningResourceRecord> LOLRlist = LearningResourceRecord.createLearningResourceRecordsFromJsonFile(TEST_DIR+"mediumRealisticResource.json");

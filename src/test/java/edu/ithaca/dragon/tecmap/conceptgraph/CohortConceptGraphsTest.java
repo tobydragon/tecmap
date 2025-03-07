@@ -2,10 +2,7 @@ package edu.ithaca.dragon.tecmap.conceptgraph;
 
 import com.opencsv.exceptions.CsvException;
 import edu.ithaca.dragon.tecmap.Settings;
-import edu.ithaca.dragon.tecmap.io.reader.CsvFileLibrary;
-import edu.ithaca.dragon.tecmap.io.reader.CsvProcessor;
-import edu.ithaca.dragon.tecmap.io.reader.TecmapCSVReader;
-import edu.ithaca.dragon.tecmap.io.reader.SakaiReader;
+import edu.ithaca.dragon.tecmap.io.reader.*;
 import edu.ithaca.dragon.tecmap.io.record.CohortConceptGraphsRecord;
 import edu.ithaca.dragon.tecmap.io.record.ConceptGraphRecord;
 import edu.ithaca.dragon.tecmap.io.record.ConceptRecord;
@@ -147,7 +144,8 @@ public class CohortConceptGraphsTest {
         try{
             List<String[]> rows = CsvFileLibrary.parseRowsFromFile(Settings.TEST_RESOURCE_DIR + "ManuallyCreated/basicRealisticAssessment.csv");
             List<CsvProcessor> processors = new ArrayList<>();
-            TecmapCSVReader tecmapCsvReader = new SakaiReader(rows, processors);
+            processors.add(new CanvasConverter());
+            TecmapCSVReader tecmapCsvReader = new CanvasReader(rows, processors);
 
             ConceptGraph  structure = new ConceptGraph(ConceptGraphRecord.buildFromJson(Settings.TEST_RESOURCE_DIR + "ManuallyCreated/basicRealisticConceptGraph.json"),
                     LearningResourceRecord.createLearningResourceRecordsFromJsonFile(Settings.TEST_RESOURCE_DIR + "ManuallyCreated/basicRealisticResource.json" ));
@@ -171,7 +169,8 @@ public class CohortConceptGraphsTest {
         try {
             List<String[]> rows = CsvFileLibrary.parseRowsFromFile(Settings.TEST_RESOURCE_DIR + "ManuallyCreated/basicRealisticAssessment.csv");
             List<CsvProcessor> processors = new ArrayList<>();
-            TecmapCSVReader tecmapCsvReader = new SakaiReader(rows, processors);
+            processors.add(new CanvasConverter());
+            TecmapCSVReader tecmapCsvReader = new CanvasReader(rows, processors);
 
             ConceptGraph graph = new ConceptGraph(ConceptGraphRecord.buildFromJson(Settings.TEST_RESOURCE_DIR + "ManuallyCreated/basicRealisticConceptGraph.json"),
                     LearningResourceRecord.createLearningResourceRecordsFromJsonFile(Settings.TEST_RESOURCE_DIR + "ManuallyCreated/basicRealisticResource.json"));
@@ -193,7 +192,8 @@ public class CohortConceptGraphsTest {
         try {
             List<String[]> rows = CsvFileLibrary.parseRowsFromFile(Settings.TEST_RESOURCE_DIR + "ManuallyCreated/basicRealisticAssessment.csv");
             List<CsvProcessor> processors = new ArrayList<>();
-            TecmapCSVReader tecmapCsvReader = new SakaiReader(rows, processors);
+            processors.add(new CanvasConverter());
+            TecmapCSVReader tecmapCsvReader = new CanvasReader(rows, processors);
 
             ConceptGraph singleGraph = new ConceptGraph(ConceptGraphRecord.buildFromJson(Settings.TEST_RESOURCE_DIR + "ManuallyCreated/basicRealisticConceptGraph.json"),
                     LearningResourceRecord.createLearningResourceRecordsFromJsonFile(Settings.TEST_RESOURCE_DIR + "ManuallyCreated/basicRealisticResource.json"),

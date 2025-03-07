@@ -4,10 +4,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opencsv.exceptions.CsvException;
 import edu.ithaca.dragon.tecmap.Settings;
-import edu.ithaca.dragon.tecmap.io.reader.CsvFileLibrary;
-import edu.ithaca.dragon.tecmap.io.reader.CsvProcessor;
-import edu.ithaca.dragon.tecmap.io.reader.TecmapCSVReader;
-import edu.ithaca.dragon.tecmap.io.reader.SakaiReader;
+import edu.ithaca.dragon.tecmap.io.reader.*;
 import edu.ithaca.dragon.tecmap.learningresource.AssessmentItem;
 import edu.ithaca.dragon.tecmap.learningresource.LearningResource;
 import edu.ithaca.dragon.tecmap.learningresource.LearningResourceType;
@@ -188,8 +185,9 @@ public class LearningResourceRecordTest {
     public void createLearningObjectLinkRecordsTest() throws IOException, CsvException {
         List<String[]> rows = CsvFileLibrary.parseRowsFromFile(Settings.TEST_RESOURCE_DIR + "ManuallyCreated/complexRealisticAssessment.csv");
         List<CsvProcessor> processors = new ArrayList<>();
+        processors.add(new CanvasConverter());
         try {
-            TecmapCSVReader test = new SakaiReader(rows, processors);
+            TecmapCSVReader test = new CanvasReader(rows, processors);
             Collection<AssessmentItem> list = test.getManualGradedLearningObjects();
             List<AssessmentItem> list2 = test.getManualGradedLearningObjects();
             List<LearningResourceRecord> lolrList = LearningResourceRecord.createLearningResourceRecordsFromAssessmentItems(list);

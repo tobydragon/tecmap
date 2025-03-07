@@ -87,8 +87,8 @@ public class ConceptGraphSuggesterLibraryTest {
         //create the data to be used to create and populate the graph copies
         List<String[]> rows = CsvFileLibrary.parseRowsFromFile(Settings.TEST_RESOURCE_DIR + "ManuallyCreated/exampleDataAssessment.csv");
         List<CsvProcessor> processors = new ArrayList<>();
-        processors.add(new CreateMaxScoreRow());
-        TecmapCSVReader tecmapCsvReader = new SakaiReader(rows, processors);
+        processors.add(new CanvasConverter());
+        TecmapCSVReader tecmapCsvReader = new CanvasReader(rows, processors);
         List<AssessmentItemResponse> assessments = tecmapCsvReader.getManualGradedResponses();
 
         //create the average and individual graphs
@@ -119,8 +119,8 @@ public class ConceptGraphSuggesterLibraryTest {
         //create the data to be used to create and populate the graph copies
         List<String[]> rows = CsvFileLibrary.parseRowsFromFile(Settings.TEST_RESOURCE_DIR + "ManuallyCreated/exampleDataAssessment.csv");
         List<CsvProcessor> processors = new ArrayList<>();
-        processors.add(new CreateMaxScoreRow());
-        TecmapCSVReader tecmapCsvReader = new SakaiReader(rows, processors);
+        processors.add(new CanvasConverter());
+        TecmapCSVReader tecmapCsvReader = new CanvasReader(rows, processors);
         List<AssessmentItemResponse> assessments = tecmapCsvReader.getManualGradedResponses();
 
         //create the average and individual graphs
@@ -233,10 +233,8 @@ public class ConceptGraphSuggesterLibraryTest {
         OrganizedLearningResourceSuggestions res = new OrganizedLearningResourceSuggestions(orig, concepts);
 
         String incomString = res.toString(0);
-        System.out.println("incomplete: " + incomString);
 
         String wrongString = res.toString(1);
-        System.out.println("wrong: " + wrongString);
 
 
         assertEquals(incomString, "Resource: Q6\t Concepts it relates to: Boolean\t Importance: 1\t Direct Concept Links: 1" +

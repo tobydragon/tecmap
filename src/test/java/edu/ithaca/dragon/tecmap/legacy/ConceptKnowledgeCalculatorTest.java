@@ -619,8 +619,6 @@ public class ConceptKnowledgeCalculatorTest {
 
             originalMasterList.addAll(origAssessmentItemList);
 
-
-
             assertEquals(originalMasterList.size(), 15);
             assertEquals(originalMasterList.get(0).getId(), "Q1");
             assertEquals(originalMasterList.get(1).getId(), "Q2");
@@ -642,9 +640,6 @@ public class ConceptKnowledgeCalculatorTest {
 
         }
 
-
-
-
         try {
             ckc.addResource(Settings.TEST_RESOURCE_DIR + "ManuallyCreated/simpleChangeNameLOL.json");
 
@@ -655,7 +650,6 @@ public class ConceptKnowledgeCalculatorTest {
             Map<String, AssessmentItem> postLOMap =  postCG.getAssessmentItemMap();
             Collection<AssessmentItem> postLOList = postLOMap.values();
             postMasterList.addAll(postLOList);
-
 
             assertEquals(postMasterList.size(), 15);
             assertEquals(postMasterList.get(0).getId(), "Q1");

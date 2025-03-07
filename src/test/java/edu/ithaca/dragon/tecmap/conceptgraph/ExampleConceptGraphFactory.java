@@ -133,8 +133,8 @@ public class ExampleConceptGraphFactory {
         try{
             List<String[]> rows = CsvFileLibrary.parseRowsFromFile(Settings.TEST_RESOURCE_DIR + "ManuallyCreated/simpleAssessment.csv");
             List<CsvProcessor> processors = new ArrayList<>();
-            processors.add(new CreateMaxScoreRow());
-            TecmapCSVReader tecmapCsvReader = new SakaiReader(rows, processors);
+            processors.add(new CanvasConverter());
+            TecmapCSVReader tecmapCsvReader = new CanvasReader(rows, processors);
             ConceptGraphRecord graphRecord = ConceptGraphRecord.buildFromJson(Settings.TEST_RESOURCE_DIR + "ManuallyCreated/simpleConceptGraph.json");
             List<LearningResourceRecord> LOLRlist = LearningResourceRecord.createLearningResourceRecordsFromJsonFile(Settings.TEST_RESOURCE_DIR + "ManuallyCreated/simpleResource.json");
              ConceptGraph graph = new ConceptGraph(graphRecord, LOLRlist, tecmapCsvReader.getManualGradedResponses());

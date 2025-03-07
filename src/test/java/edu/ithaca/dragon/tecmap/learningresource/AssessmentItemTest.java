@@ -85,8 +85,8 @@ public class AssessmentItemTest {
     public void getAssessmentCopyWithoutResponsesTest() {
         try {
             TecmapDatastore tecmapDatastore = TecmapFileDatastore.buildFromJsonFile(Settings.DEFAULT_TEST_DATASTORE_PATH);
-            TecmapAPI analysisExample = tecmapDatastore.retrieveTecmapForId("DocExample");
-            ConceptGraph acg = analysisExample.getAverageConceptGraph();
+            TecmapAPI cs1Example = tecmapDatastore.retrieveTecmapForId("Cs1Example");
+            ConceptGraph acg = cs1Example.getAverageConceptGraph();
             Map<String, AssessmentItem> assessmentItemMap = acg.getAssessmentItemMap();
             List<AssessmentItem> assessmentItems = new ArrayList<>(assessmentItemMap.values());
             List<AssessmentItem> copyWithoutResponses = AssessmentItem.getAssessmentCopyWithoutResponses(assessmentItems);
@@ -114,8 +114,8 @@ public class AssessmentItemTest {
     public void getItemResponsesFromAssessmentListTest(){
         try{
             TecmapDatastore tecmapDatastore = TecmapFileDatastore.buildFromJsonFile(Settings.DEFAULT_TEST_DATASTORE_PATH);
-            TecmapAPI analysisExample = tecmapDatastore.retrieveTecmapForId("Cs1Example");
-            ConceptGraph acg = analysisExample.getAverageConceptGraph();
+            TecmapAPI cs1Example = tecmapDatastore.retrieveTecmapForId("Cs1Example");
+            ConceptGraph acg = cs1Example.getAverageConceptGraph();
             Map<String, AssessmentItem> assessmentItemMap = acg.getAssessmentItemMap();
             List<AssessmentItem> assessmentItems = new ArrayList<>(assessmentItemMap.values());
 
